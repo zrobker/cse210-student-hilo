@@ -2,8 +2,8 @@ from game.dealer import Dealer
 
 class Director:
 
-def __init__(self):
-    pass
+    def __init__(self):
+       pass
 ''' Constructor
 # initiate the class constructor with self 
     #   a code template for a person who direct the game. 
@@ -32,8 +32,8 @@ def get_cards():
 # Generates 2 new cards,
 #  and prepares them for their n
         """get the cards  """
-    self.dealer.card0()
-    self.dealer.card1()
+   # self.dealer.card0()
+   # self.dealer.card1()
 
 
 
