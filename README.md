@@ -37,3 +37,4 @@ root                    (project root folder)
 ---
 * TODO: Add your names and emails here
 Xander Newlun: xdnewlun1@byui.edu
+Anita Woodford: awoodfor@byui
