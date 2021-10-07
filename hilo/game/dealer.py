@@ -1,14 +1,14 @@
 class Dealer:
 
     def __init__(self):
-        self.card0 = 0
-        self.card1 = 0
+        self.first_card = 0
+        self.second_card = 0
 
 
-def  card0(self):
+def  deal_first_card(self):
     pass
 
-def  card1(self):
+def  deal_second_cards(self):
     pass
 
 def get_points(self):
