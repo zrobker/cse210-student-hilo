@@ -66,7 +66,7 @@ class Dealer:
 
         self.result = random.randint(1, 13)
         self.result2 = random.randint(1, 13)
-        self.card = input(f"The card is: {self.result}")
+        print(f"The card is: {self.result}")
         self.feedback = input("Higher or lower? [h/l] ").lower()
                 
         if self.feedback == "h":
