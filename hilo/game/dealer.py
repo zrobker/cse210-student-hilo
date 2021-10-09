@@ -1,102 +1,85 @@
-import random
+from game.dealer import Dealer
 
-class Dealer:
-    """A code template for a person who throws dice. The responsibility of this 
-    class of objects is to throw the dice, keep track of the values, the score 
-    and determine whether or not it can throw again.
+class Director:
+    """A code template for a person who directs the game. The responsibility of 
+    this class of objects is to keep track of the score and control the 
+    sequence of play.
     
     Attributes:
-        score_list (list): A list numbers representing the result of scores.
-        result: A result of random number 1 to 13.
+        keep_playing (boolean): Whether or not the player wants to keep playing.
+        score (number): The total number of points earned.
+        dealer (Dealer): An instance of the class of objects known as Dealer.
     """
 
     def __init__(self):
-        """Class constructor. Declares and initializes instance attributes.
+        """The class constructor.
+        
+        Args:
+            self (Director): an instance of Director.
+        """
+        self.keep_playing = True
+        self.score = 300
+        self.dealer = Dealer()
+
+    def start_game(self):
+        """Starts the game loop to control the sequence of play.
+        
+        Args:
+            self (Director): an instance of Director.
+        """
+        while self.keep_playing:
+            self.get_inputs()
+            self.do_updates()
+            self.do_outputs()
+
+    def get_inputs(self):
+
+        print("..............................")
+        print("WELL COME TO HIGH LOW GAME")
+        print("..............................")
+        print()
+        
+        print("DISPLAYED CARD:")        
+        
+        """Gets the inputs at the beginning of each round of play. In this case,
+        that means showing the card.
 
         Args:
-            self (Dealer): An instance of Dealer.
+            self (Director): An instance of Director.
+            dealer (Dealer): An instance of Dealer.
         """
-        self.score_list = []
-        self.result = random.randint(1, 13)
-        self.result2 = random.randint(1, 13)
-        self.num_deals = 0
-        self.low = 1
-        self.high = 13 
-        self.score = 100
-        self.score0 = 0
-        self.score1 = -75
+        self.dealer.show_card()
         
-    def can_show(self):
-        """Determines whether or not the Dealer can show again according to 
-        the rules. 
+    def do_updates(self):
+        """Updates the important game information for each round of play. In 
+        this case, that means updating the score.
 
-        Args: 
-            self (Dealer): An instance of Dealer.
-        
-        Returns:
-            boolean: True if the list of card has at least a hundred, or a negative seventy-five, or 
-            the number of deals is zero; false if otherwise.
+        Args:
+            self (Director): An instance of Director.
         """
-        return (self.score_list.count(100) > 0 or self.score_list.count(-75) > 0 
-                or self. num_deals == 0)
-
-    def get_points(self):
-        """Calculates the total number of points for the current deal. hundreds 
-        are worth 100 points, negative seventy-five are worth -75 points. 
-
-        Args: 
-            self (Dealer): An instance of Dealer.
+        points = self.dealer.get_points()
+        self.score += points
         
-        Returns:
-            number: The total points for the current deal.
+    def do_outputs(self):
+        """Outputs the important game information for each round of play. In 
+        this case, that means the card that were rolled and the score.
+
+        Args:
+            self (Director): An instance of Director.
         """
-        return self.score_list.count(100) * 100 - self.score_list.count(-75) * 75
         
-    def show_card(self):
-        """Show the car by randomly generating numbers 1 to 13. 
-
-        Args: 
-            self (Dealer): An instance of Dealer.
-        """
-        self.score_list.clear()
-        if self.low != self.high:
-                self.result = random.randint(self.low, self.high)
-        #else:
-            #self.result = self.low
-
-        self.result = random.randint(1, 13)
-        self.result2 = random.randint(1, 13)
-        print(f"The card is: {self.result}")
-        self.feedback = input(str("Higher or lower? [h/l] ").lower())
-                
-        if self.feedback == "h":
-            self.high = self.result - 1
+        print(f"Next card was: {self.dealer.result2}")        
+        print(f"Your score is: {self.score}")
+        if self.score <= 0:
+            self.dealer.score_list.clear()
+            print("The game is over")
             
-            if self.result2 > self.result:
-                self.score = 100
-                self.score_list.append(self.score)
-
-            elif self.result2 == self.result:
-                self.score0 = 0
-                self.score_list.append(self.score0)
-
-            else:
-                self.score = -75
-                self.score_list.append(self.score1)
-                    
-        elif self.feedback =="l":
-            self.low = self.result + 1
-            
-            if self.result2 < self.result:
-                self.score = 100
-                self.score_list.append(self.score)
-
-            elif self.result2 == self.result:
-                self.score0 = 0
-                self.score_list.append(self.score0)
-
-            else:
-                self.score = -75
-                self.score_list.append(self.score1)         
-
-        self.num_deals += 1
+            print()
+        
+        if self.dealer.can_show():
+            choice = input("Roll again? [y/n] ")
+            self.keep_playing = (choice == "y")
+            print()
+        else:
+            self.keep_playing = False
+print()
