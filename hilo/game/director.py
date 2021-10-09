@@ -78,7 +78,7 @@ class Director:
             print()
         
         if self.dealer.can_show():
-            choice = input("Roll again? [y/n] ")
+            choice = input("Keep playing? [y/n] ")
             self.keep_playing = (choice == "y")
             print()
         else:
