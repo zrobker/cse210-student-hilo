@@ -39,7 +39,7 @@ class Director:
         print("..............................")
         print()
         
-        print("DISPLAYED CARD:")        
+        #print("DISPLAYED CARD:")        
         
         """Gets the inputs at the beginning of each round of play. In this case,
         that means showing the card.
@@ -67,6 +67,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
+        
         
         Next_card = input(f"Next card was: {self.dealer.result2}")        
         print(f"Your score is: {self.score}")
