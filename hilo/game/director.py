@@ -35,7 +35,7 @@ class Director:
     def get_inputs(self):
 
         print("..............................")
-        print("WELL COME TO HIGH LOW GAME")
+        print("WELCOME TO HIGH LOW GAME") #  corrected the spelling 
         print("..............................")
         print()
         
