@@ -67,7 +67,7 @@ class Dealer:
         self.result = random.randint(1, 13)
         self.result2 = random.randint(1, 13)
         print(f"The card is: {self.result}")
-        self.feedback = input("Higher or lower? [h/l] ").lower()
+        self.feedback = input(str("Higher or lower? [h/l] ").lower())
                 
         if self.feedback == "h":
             self.high = self.result - 1
@@ -100,6 +100,3 @@ class Dealer:
                 self.score_list.append(self.score1)         
 
         self.num_deals += 1
-
-
-
